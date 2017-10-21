@@ -85,6 +85,9 @@
 
 <template>
   <div>
+    <comp v-bind:hotList="hotList"></comp>
+    <!-- <img src='http://localhost:8086/api/bili'/>
+    <img src='http://n.sinaimg.cn/news/transform/20170906/vbQZ-fykqmrw0829037.jpg'/> -->
     <div class="block">
       <el-carousel height="0" >
         <el-carousel-item v-for="item in carousel" :key="item">
@@ -92,14 +95,40 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <div>
-      热门
-      <comp v-bind:hotList="hotList"></comp>
-    </div>
-    <div>
-      动画
-      <comp v-bind:hotList="animationList"></comp>
-    </div>
+
+    <!-- <el-row>
+      <el-col :span="12">
+        <a>
+          <div class="unitVideo">
+            <img class="unitPic" v-bind:src="proxyUrl+'http://i2.hdslb.com/bfs/archive/f5270410d4e30350c9879738b34432ca859d3a6f.jpg'"/>
+            <div class="unitTitle">【洛天依.言和原创专辑宣传】Kill My【Sya】</div>
+          </div>
+        </a>        
+      </el-col>
+      <el-col :span="12">
+        <a>
+          <div class="unitVideo">
+            <img class="unitPic" v-bind:src="proxyUrl+'http://i2.hdslb.com/bfs/archive/f5270410d4e30350c9879738b34432ca859d3a6f.jpg'"/>
+            <div class="unitTitle">【洛天依.言和原创专辑宣传】Kill My【Sya】</div>
+          </div>
+        </a>
+      </el-col>
+    </el-row> -->
+
+    <el-row>
+      <el-col :span="12"  v-for="item in hotList" :key="item">
+        <a>
+          <div class="unitVideo">
+            <div class="unitPicDiv1">
+              <div class="unitPicDiv2">
+                <img class="unitPic" v-bind:src="proxyUrl+item.pic+'@339w_212h.webp'"/>
+              </div>
+            </div>
+            <div class="unitTitle">{{item.title}}</div>
+          </div>
+        </a>        
+      </el-col>
+    </el-row>
   </div>  
   
 </template>
@@ -115,12 +144,15 @@
     fetch(proxyUrl+apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      let tempData=data.data;
-      if(tempData.archives){
-        that[attr]=tempData.archives;
-      }else{
-        that[attr]=tempData;
+      var carouselTemp=[];
+      for(let d in data.data){
+        carouselTemp.push(data.data[d]);                
       }
+      console.log('that',that);
+      console.log('that:'+attr,that[attr]);      
+      that[attr]=carouselTemp;
+      console.log('carouselTemp',carouselTemp);
+      console.log('that[attr]',that[attr]);
     });
   }
   let comp={template:'#comp'}
@@ -130,15 +162,24 @@
       return{
         proxyUrl:proxyUrl,
         carousel:[],
-        hotList:[],
-        animationList:[]
+        hotList:[]
       }
     },
     created:function(){
       let that=this;
       fetchApi(apiUrl,that,'carousel');
       fetchApi(hotUrl,that,'hotList');
-      fetchApi(animationUrl,that,'animationList');
+      // quick
+      // fetch(apiUrl)
+      // .then((response) => response.json())
+      // .then((data) => {
+      //   var carouselTemp=[];
+      //   carouselTemp=data.data;
+      //   // for(let d in data.data){
+      //   //   carouselTemp.push(data.data[d]);                
+      //   // }
+      //   that.carousel=carouselTemp;
+      // });
     },
     components:{
       'comp':unitVideo
