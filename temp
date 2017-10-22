@@ -1,8 +1,0 @@
-npm config set proxy=http://198.181.56.25:1080
-npm config set https-proxy=http://198.181.56.25:1080
-
-npm config set proxy=ss://aes-256-cfb:Njk3Yjc0Zj@198.181.56.25:1080
-npm config set https-proxy=ss://aes-256-cfb:Njk3Yjc0Zj@198.181.56.25:1080
-
-npm config set proxy http://aes-256-cfb:Njk3Yjc0Zj@198.181.56.25:443
-npm config set https-proxy http://aes-256-cfb:Njk3Yjc0Zj@198.181.56.25:443
