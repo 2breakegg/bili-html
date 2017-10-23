@@ -17,9 +17,15 @@
   <div id="app">{{ message }}</div>
   <script>
     resize=function(){
+      var fontMax=30;
+      var fontMin=20;
       var body=document.body;
-      var html=document.getElementsByTagName('html')[0]
-      html.style.fontSize=body.scrollWidth/20+"px";
+      var html=document.getElementsByTagName('html')[0];
+      fontSize=body.scrollWidth/20;
+      fontSize=fontSize > fontMin ? fontSize : fontMin;
+      fontSize=fontSize < fontMax ? fontSize : fontMax;
+
+      html.style.fontSize=fontSize+"px";
     }
     window.onresize=resize;
     window.onload=resize;

@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --port 8086",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --port 8086 --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "api":"node .\\test\\catch.js"
+    "api": "node .\\apiserver.js"
   },
   "dependencies": {
     "element-ui": "^1.0.0",
     "es2015": "0.0.0",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

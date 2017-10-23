@@ -30,57 +30,7 @@
   }
 </style>
 
-<style name='pic'>
- .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    /* border-radius: 4px; */
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #ff0000;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    /* //border-radius: 4px; */
-    /* min-height: 36px; */
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
 
-  .unitVideo{
-    margin:5% 5% 0 5%;
-    border-radius: 14px;
-  }
-
-  .unitPicDiv1{
-    position: relative;
-  }
-  .unitPicDiv2{
-    padding-bottom:62.5%; 
-    height:0;
-  }
-  .unitPic{
-    width:100%;
-    border-radius: 4px;
-  }
-  .unitTitle{
-    font-size:0.7rem;
-    height: 2rem;
-    overflow: hidden;
-    /* height:1.3rem; */
-  }
-</style>
 
 
 <template>
@@ -93,7 +43,7 @@
       </el-carousel>
     </div>
     <div>
-      热门
+      <router-link to="/Video">热门</router-link>
       <comp v-bind:hotList="hotList"></comp>
     </div>
     <div>
